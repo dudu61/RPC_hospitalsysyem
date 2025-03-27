@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Client {
-    public void main(String args[]) {
+    public static void main(String args[]) {
         try{
-            HospitalService hospitalService=(HospitalService) Naming.lookup("rmi://loacalhost//HospitalService");
+            HospitalService hospitalService=(HospitalService) Naming.lookup("rmi://localhost:1099/HospitalService");
 //            Appointment appointment=new Appointment(0,"dudu619","张新亮","西安国际医学中心","2025-3-16","10:00-11:00");
             Scanner scanner=new Scanner(System.in);
             while (true){
@@ -22,6 +22,7 @@ public class Client {
                 System.out.println("5. 退出");
 
                 int choice=scanner.nextInt();
+                scanner.nextLine();
                 switch (choice){
 
                     case 1:
@@ -91,6 +92,12 @@ public class Client {
                             System.out.println("取消预约失败！");
                         }
                         break;
+                    case 5:
+                        System.out.println("退出系统...");
+                        scanner.close();
+                        return;
+                    default:
+                        System.out.println("请输入有效选项！");
                 }
 
             }
